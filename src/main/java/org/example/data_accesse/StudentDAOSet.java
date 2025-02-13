@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class StudentDAOSet implements StudentDAO {
 
-    private HashSet<Student> students = new HashSet<>();
+    private static HashSet<Student> students = new HashSet<>();
 
 
     @Override

@@ -1,5 +1,6 @@
 package org.example.model;
 
+import org.example.data_accesse.StudentDAOSet;
 import org.example.sequenser.CourseSequencer;
 
 import java.util.Objects;
