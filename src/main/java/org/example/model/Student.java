@@ -1,6 +1,7 @@
 package org.example.model;
 
-import org.example.sequenser.CourseSequencer;
+
+import org.example.sequenser.StudentSequencer;
 
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class Student {
     // Setters
 
     private void setId() {
-        this.id = CourseSequencer.nextId();
+        this.id = StudentSequencer.nextId();
     }
 
     public void setName(String name) {
