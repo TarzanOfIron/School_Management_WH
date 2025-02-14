@@ -2,6 +2,7 @@ package org.example.model;
 
 
 import org.example.data_accesse.CourseDAOSet;
+import org.example.data_accesse.PersonDAOSet;
 import org.example.data_accesse.StudentDAOSet;
 
 import java.time.LocalDate;
@@ -12,8 +13,9 @@ import static org.example.view.Start.printFindStudentMenu;
 
 public class CLILogic {
 
-    static StudentDAOSet studentDAOSet = new StudentDAOSet();
+    //static StudentDAOSet studentDAOSet = new StudentDAOSet();
     static CourseDAOSet courseDAOSet = new CourseDAOSet();
+    static PersonDAOSet personDAOSet = new PersonDAOSet();
 
 
     // Menu Selector
@@ -40,7 +42,10 @@ public class CLILogic {
         String email = scanner.nextLine();
         System.out.print("Enter Address: ");
         String address = scanner.nextLine();
-        studentDAOSet.saveStudent(new Student(name, email, address));
+        System.out.print("Enter Role: ");
+        String stringRole = scanner.nextLine();
+        Role role = Role.valueOf(stringRole);
+        personDAOSet.savePerson(new Person(name, email, address,role));
     }
 
 
@@ -64,7 +69,7 @@ public class CLILogic {
         int studentId = scanner.nextInt();
         System.out.print("Enter Id Of The Course: ");
         int courseId = scanner.nextInt();
-        courseDAOSet.finfById(courseId).register(studentDAOSet.findById(studentId));
+        courseDAOSet.finfById(courseId).register(personDAOSet.findById(studentId));
     }
 
 
@@ -75,7 +80,7 @@ public class CLILogic {
         int studentId = scanner.nextInt();
         System.out.print("Enter Id Of The Course: ");
         int courseId = scanner.nextInt();
-        courseDAOSet.finfById(courseId).unregister(studentDAOSet.findById(studentId));
+        courseDAOSet.finfById(courseId).unregister(personDAOSet.findById(studentId));
     }
 
 
@@ -90,24 +95,24 @@ public class CLILogic {
             case 1 -> findStudentByName();
             case 2 -> findStudentByEmail();
             case 3 -> findStudentByID();
-            case 4 -> System.out.println(studentDAOSet.findAll());
+            case 4 -> System.out.println(personDAOSet.findAll());
             default -> System.out.println("Not An Option, Try Again!");
         }
     }
 
     private static void findStudentByName() {
         System.out.print("Enter Students Name: ");
-        System.out.println(studentDAOSet.findByName(new Scanner(System.in).nextLine()));
+        System.out.println(personDAOSet.findByName(new Scanner(System.in).nextLine()));
     }
 
     private static void findStudentByEmail() {
         System.out.print("Enter Students Email: ");
-        System.out.println(studentDAOSet.findByEmail(new Scanner(System.in).nextLine()));
+        System.out.println(personDAOSet.findByEmail(new Scanner(System.in).nextLine()));
     }
 
     private static void findStudentByID() {
         System.out.print("Enter Students Id:");
-        System.out.println(studentDAOSet.findById(new Scanner(System.in).nextInt()));
+        System.out.println(personDAOSet.findById(new Scanner(System.in).nextInt()));
     }
 
 

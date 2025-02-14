@@ -14,7 +14,7 @@ public class StudentDAOSet implements StudentDAO {
     public Student saveStudent(Student student) {
         Objects.requireNonNull(student);
         students.add(student);
-        return null;
+        return student;
     }
 
     @Override

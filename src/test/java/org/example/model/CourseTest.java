@@ -46,33 +46,45 @@ class CourseTest {
     // register
     @Test
     void studentsCollectionContainsTheRegisteredStudent() {
-        Student bob = new Student("Bob", "Bob@Test.se", "12345 aaaway 45, city ");
+        Person bob = new Person("Bob", "Bob@Test.se", "12345 aaaway 45, city ", Role.Student);
         Course math = new Course("Math01", LocalDate.now().plusDays(3), 12);
         math.register(bob);
-        assertTrue(math.getStudents().contains(bob));
+        assertTrue(math.getPersonStudents().contains(bob));
     }
 
     @Test
-    void registeringANullObjectThrowsNullPointerException() {
+    void registeringANullStudnetObjectThrowsNullPointerException() {
         Course math = new Course("Math01", LocalDate.now().plusDays(3), 12);
-        assertThrows(NullPointerException.class, () -> math.register(null));
+        assertThrows(NullPointerException.class, () -> math.register((Student) null));
+    }
+
+    @Test
+    void registeringANullPersonObjectThrowsNullPointerException() {
+        Course math = new Course("Math01", LocalDate.now().plusDays(3), 12);
+        assertThrows(NullPointerException.class, () -> math.register((Person) null));
     }
 
     // unregister
 
     @Test
     void studentGetsRemovedFromTheStudentsCollectionAfterUnregisteringThem() {
-        Student bob = new Student("Bob", "Bob@Test.se", "12345 aaaway 45, city ");
+        Person bob = new Person("Bob", "Bob@Test.se", "12345 aaaway 45, city ", Role.Student);
         Course math = new Course("Math01", LocalDate.now().plusDays(3), 12);
         math.register(bob);
         math.unregister(bob);
-        assertFalse(math.getStudents().contains(bob));
+        assertFalse(math.getPersonStudents().contains(bob));
     }
 
     @Test
-    void unregisteringANullObjectThrowsNullPointerException() {
+    void unregisteringANullStudnetObjectThrowsNullPointerException() {
         Course math = new Course("Math01", LocalDate.now().plusDays(3), 12);
-        assertThrows(NullPointerException.class, () -> math.unregister(null));
+        assertThrows(NullPointerException.class, () -> math.unregister((Student) null));
+    }
+
+    @Test
+    void unregisteringANullPersonObjectThrowsNullPointerException() {
+        Course math = new Course("Math01", LocalDate.now().plusDays(3), 12);
+        assertThrows(NullPointerException.class, () -> math.unregister((Person) null));
     }
 
     // Test Id
